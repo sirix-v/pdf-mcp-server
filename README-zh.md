@@ -29,8 +29,7 @@ pdf-mcp-server -pdfdir=你存放论文的路径
 {
   "mcpServers": {
     "pdf-mcp-server": {
-      "url": "http://127.0.0.1:8080/sse",
-      "directory": "/Users/sirix/lunwen/"
+      "url": "http://127.0.0.1:8080/sse"
     }
   }
 }
