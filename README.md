@@ -37,5 +37,5 @@ pdf-mcp-server -pdfdir=你存放论文的路径
 ### 设置Cursor Rules
 例子
 ```
-处理与PDF相关的请求时，调用名为“pdf-mcp-server”的mcp服务器的list_pdfs工具列出/Users/sirix/lunwen目录下的所有论文，,在这个目录下查找对应文件名称的论文，并且使用pdf-mcp-server服务器的read_pdf工具进行阅读
+处理与PDF相关的请求时，调用名为“pdf-mcp-server”的mcp服务器的list_pdfs工具列出directory下的所有论文，,在这个目录下查找对应文件名称的论文，并且使用pdf-mcp-server服务器的read_pdf工具进行阅读
 ```
