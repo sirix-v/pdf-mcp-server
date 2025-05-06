@@ -37,5 +37,5 @@ For example: pdf-mcp-server -pdfdir=/Users/sirix/lunwen
 ### Set Cursor Rules
 Example:
 ```
-When handling PDF-related requests, call the list_pdfs tool of the mcp server named "pdf-mcp-server" to list all papers in the /Users/sirix/lunwen directory, search for the paper with the corresponding file name in this directory, and use the read_pdf tool of the pdf-mcp-server to read it.
+When handling PDF-related requests, call the find_pdf tool of the mcp server named "pdf-mcp-server" to list all papers in the /Users/sirix/lunwen directory, search for the paper with the corresponding file name in this directory, and use the read_pdf tool of the pdf-mcp-server to read it.
 ``` 
