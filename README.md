@@ -39,8 +39,3 @@ Example:
 ```
 When handling PDF-related requests, call the list_pdfs tool of the mcp server named "pdf-mcp-server" to list all papers in the /Users/sirix/lunwen directory, search for the paper with the corresponding file name in this directory, and use the read_pdf tool of the pdf-mcp-server to read it.
 ``` 
-### 设置Cursor Rules
-例子
-```
-处理与PDF相关的请求时，调用名为“pdf-mcp-server”的mcp服务器的list_pdfs工具列出directory下的所有论文，,在这个目录下查找对应文件名称的论文，并且使用pdf-mcp-server服务器的read_pdf工具进行阅读
-```
