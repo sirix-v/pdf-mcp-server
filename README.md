@@ -1,29 +1,24 @@
-# mcp服务器--阅读对应目录下的论文
+# MCP Server -- Read Papers in the Specified Directory
 
-### 安装
-编译：
-```
-go build -o pdf-mcp-server main.go
-```
+### Installation
 
-将pdf-mcp-server这个二进制文件所在的路径添加到环境变量里
+Add the path where the pdf-mcp-server binary is located to your environment variable.
 
-以mac为例
+Take macOS as an example:
 
 ```
-export PATH=$PATH:你的路径/pdf-mcp-server
+export PATH=$PATH:/your/path/pdf-mcp-server
 source ~/.zshrc
 ```
 
-
-### 启动mcp服务器
+### Start the MCP Server
 
 ```
-pdf-mcp-server -pdfdir=你存放论文的路径
-比如：pdf-mcp-server -pdfdir=/Users/sirix/lunwen
+pdf-mcp-server -pdfdir=your_paper_directory
+For example: pdf-mcp-server -pdfdir=/Users/sirix/lunwen
 ```
 
-### cursor中使用
+### Cursor Settings
 ```
 {
   "mcpServers": {
@@ -34,6 +29,11 @@ pdf-mcp-server -pdfdir=你存放论文的路径
   }
 }
 ```
+### Set Cursor Rules
+Example:
+```
+When handling PDF-related requests, call the list_pdfs tool of the mcp server named "pdf-mcp-server" to list all papers in the /Users/sirix/lunwen directory, search for the paper with the corresponding file name in this directory, and use the read_pdf tool of the pdf-mcp-server to read it.
+``` 
 ### 设置Cursor Rules
 例子
 ```
