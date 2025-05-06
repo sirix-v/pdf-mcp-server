@@ -29,8 +29,7 @@ For example: pdf-mcp-server -pdfdir=/Users/sirix/lunwen
 {
   "mcpServers": {
     "pdf-mcp-server": {
-      "url": "http://127.0.0.1:8080/sse",
-      "directory": "/Users/sirix/lunwen/"
+      "url": "http://127.0.0.1:8080/sse"
     }
   }
 }
