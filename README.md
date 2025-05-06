@@ -1,6 +1,11 @@
 # MCP Server -- Read Papers in the Specified Directory
 [中文文档](https://github.com/sirix-v/pdf-mcp-server/blob/master/README-zh.md)
 
+### Compile
+```
+go build -o pdf-mcp-server main.go
+```
+
 ### Installation
 
 Add the path where the pdf-mcp-server binary is located to your environment variable.
