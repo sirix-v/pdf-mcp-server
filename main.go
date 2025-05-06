@@ -23,6 +23,7 @@ import (
 
 type listPDFsReq struct {
 	Directory string `json:"directory" description:"directory path to list PDF files"`
+	Query     string `json:"query" description:"fuzzy search keyword for file name"`
 }
 
 type readPDFReq struct {
@@ -55,11 +56,11 @@ func main() {
 	}
 
 	// 注册列出PDF文件的工具
-	listPDFsTool, err := protocol.NewTool("list_pdfs", "List all PDF files in the specified directory", listPDFsReq{})
+	findPDFsTool, err := protocol.NewTool("findPDFs", "List all PDF files in the specified directory", listPDFsReq{})
 	if err != nil {
-		panic(fmt.Sprintf("Failed to create list_pdfs tool: %v", err))
+		panic(fmt.Sprintf("Failed to create findPDFs tool: %v", err))
 	}
-	mcpServer.RegisterTool(listPDFsTool, listPDFs)
+	mcpServer.RegisterTool(findPDFsTool, findPDFs)
 
 	// 注册读取PDF文件的工具
 	readPDFTool, err := protocol.NewTool("read_pdf", "Read content of a PDF file", readPDFReq{})
@@ -107,7 +108,7 @@ func main() {
 	}
 }
 
-func listPDFs(_ context.Context, request *protocol.CallToolRequest) (*protocol.CallToolResult, error) {
+func findPDFs(_ context.Context, request *protocol.CallToolRequest) (*protocol.CallToolResult, error) {
 	req := new(listPDFsReq)
 	if err := protocol.VerifyAndUnmarshal(request.RawArguments, &req); err != nil {
 		return nil, err
@@ -117,6 +118,7 @@ func listPDFs(_ context.Context, request *protocol.CallToolRequest) (*protocol.C
 	if dir == "" {
 		dir = defaultPDFDir
 	}
+	query := strings.ToLower(req.Query)
 
 	var pdfFiles []string
 	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
@@ -124,7 +126,10 @@ func listPDFs(_ context.Context, request *protocol.CallToolRequest) (*protocol.C
 			return err
 		}
 		if !info.IsDir() && filepath.Ext(path) == ".pdf" {
-			pdfFiles = append(pdfFiles, path)
+			fileName := strings.ToLower(info.Name())
+			if query == "" || strings.Contains(fileName, query) {
+				pdfFiles = append(pdfFiles, path)
+			}
 		}
 		return nil
 	})
@@ -133,11 +138,22 @@ func listPDFs(_ context.Context, request *protocol.CallToolRequest) (*protocol.C
 		return nil, fmt.Errorf("error walking directory: %v", err)
 	}
 
+	if len(pdfFiles) == 0 {
+		return &protocol.CallToolResult{
+			Content: []protocol.Content{
+				&protocol.TextContent{
+					Type: "text",
+					Text: "No matching PDF files found.",
+				},
+			},
+		}, nil
+	}
+
 	return &protocol.CallToolResult{
 		Content: []protocol.Content{
 			&protocol.TextContent{
 				Type: "text",
-				Text: fmt.Sprintf("Found %d PDF files:\n%s", len(pdfFiles), formatFileList(pdfFiles)),
+				Text: fmt.Sprintf("Found %d matching PDF files:\n%s", len(pdfFiles), formatFileList(pdfFiles)),
 			},
 		},
 	}, nil
