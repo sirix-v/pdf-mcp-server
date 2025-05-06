@@ -23,7 +23,7 @@ pdf-mcp-server -pdfdir=你存放论文的路径
 比如：pdf-mcp-server -pdfdir=/Users/sirix/lunwen
 ```
 
-### cursor设置
+### cursor中使用
 ```
 {
   "mcpServers": {
