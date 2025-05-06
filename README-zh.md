@@ -1,5 +1,10 @@
 # mcp服务器--阅读对应目录下的论文
 
+### 编译
+```
+go build -o pdf-mcp-server main.go
+```
+
 ### 安装
 
 将pdf-mcp-server这个二进制文件所在的路径添加到环境变量里
