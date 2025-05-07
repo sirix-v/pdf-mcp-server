@@ -1,4 +1,4 @@
-# MCP Server -- Read Papers in the Specified Directory
+# MCP Server -- Read Papers in the local Specified Directory
 [中文文档](https://github.com/sirix-v/pdf-mcp-server/blob/master/README-zh.md)
 
 ### Compile
